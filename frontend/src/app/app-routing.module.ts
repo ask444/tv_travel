@@ -8,9 +8,11 @@ import { ResponseResetComponent } from './components/password/response-reset/res
 import { BeforeLoginService } from './services/before-login.service';
 import { AfterLoginService } from './services/after-login.service';
 import { SuperadminmoduleModule } from './components/superadmin/superadminmodule.module';
+import { UserModule } from './components/user/user.module';
+import { AdminModule } from './components/admin/admin.module';
 
 const appRoutes: Routes = [
-  {path: '', component: LoginComponent, pathMatch: 'full'},
+  { path: '', component: LoginComponent, pathMatch: 'full' },
   {
     path: 'login',
     component: LoginComponent,
@@ -37,14 +39,27 @@ const appRoutes: Routes = [
     canActivate: [BeforeLoginService]
   },
   {
-   path: 'superadmin',
-   loadChildren:() =>SuperadminmoduleModule,
-   canActivate: [AfterLoginService]
+    path: 'superadmin',
+    loadChildren: () => SuperadminmoduleModule,
+    canActivate: [AfterLoginService]
+  }
+  ,
+  {
+    path: 'admin',
+    loadChildren: () => AdminModule,
+    canActivate: [AfterLoginService]
+  },
+  {
+    path: 'user',
+    loadChildren: () => UserModule,
+    canActivate: [AfterLoginService]
   }
 ];
 
 @NgModule({
   imports: [
+    AdminModule,
+    UserModule,
     SuperadminmoduleModule,
     RouterModule.forRoot(appRoutes)
   ],

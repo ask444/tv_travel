@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\SignUpRequest;
+use DB;
 use App\User;
 
 
@@ -38,7 +39,11 @@ class AuthController extends Controller
 
     public function signup(SignUpRequest $request)
     {
-        User::create($request->all());
+        $user =User::create($request->all());
+        $insertedId = $user->id;
+        DB::table('role_user')->insert([
+            ['role_id' => 1,'user_id'=>$insertedId]
+        ]);
         return $this->login($request);
     }
 
@@ -83,11 +88,17 @@ class AuthController extends Controller
      */
     protected function respondWithToken($token)
     {
+        $user = DB::table('role_user')->where('user_id', auth()->user()->id)->first();
+        // echo $user->role_id;
+       $userRoles= DB::table('roles')->where('id',$user->role_id) ->first();
+
+
         return response()->json([
             'access_token' => $token,
             'token_type' => 'bearer',
             'expires_in' => auth()->factory()->getTTL() * 60,
-            'user' => auth()->user()->name
+            'user' => auth()->user()->name,
+            'role'=>$userRoles->name
         ]);
     }
 }
