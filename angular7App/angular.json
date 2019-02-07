@@ -26,7 +26,10 @@
               "./node_modules/ng-snotify/styles/material.css",
               "src/styles.css"
             ],
-            "scripts": []
+            "scripts": [
+              "./node_modules/jquery/dist/jquery.min.js",
+              "./node_modules/metismenu/dist/metisMenu.js"
+            ]
           },
           "configurations": {
             "production": {
