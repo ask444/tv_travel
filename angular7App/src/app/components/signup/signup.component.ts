@@ -10,13 +10,13 @@ import { Router } from '@angular/router';
 })
 export class SignupComponent implements OnInit {
 
-  public form = {
-    email: null,
-    name: null,
-    password: null,
-    password_confirmation: null
+  public form: any = {
+    email: "",
+    name: "",
+    password: "",
+    password_confirmation: ""
   };
-  public error = [];
+  public error:any=[];
 
   constructor(
     private Jarwis: JarwisService,
