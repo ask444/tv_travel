@@ -10,10 +10,20 @@ import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 import { FormsModule } from '@angular/forms';
 import { FlatpickrModule } from 'angularx-flatpickr';
 import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
+import { EventsComponent } from './events/events.component';
 
 
 const routes: Routes = [
-  { path: 'profile', component: SuperhomeComponent },
+  {
+    path: 'profile', component: SuperhomeComponent,
+    children: [
+      { path: "", redirectTo: "events", pathMatch: "full" },
+      { path: "events", component: EventsComponent },
+      // { path: "albums", component: ArtistAlbumListComponent },
+      // { path: "videos", component: ArtistMusicVideoListComponent }
+    ]
+
+  },
   // { path: 'component2', component: Component2Component },
   // { path: 'component3', component: Component3Component },
 ];
@@ -32,6 +42,6 @@ const routes: Routes = [
     ,
     RouterModule.forChild(routes)
   ],
-  declarations: [ProfileComponent, SuperhomeComponent]
+  declarations: [ProfileComponent, SuperhomeComponent, EventsComponent]
 })
 export class SuperadminmoduleModule { }
