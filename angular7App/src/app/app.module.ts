@@ -4,7 +4,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
-import { NavbarComponent } from './components/navbar/navbar.component';
 import { LoginComponent } from './components/login/login.component';
 import { SignupComponent } from './components/signup/signup.component';
 // import { ProfileComponent } from './components/profile/profile.component';
@@ -19,13 +18,12 @@ import { AuthService } from './services/auth.service';
 import { AfterLoginService } from './services/after-login.service';
 import { BeforeLoginService } from './services/before-login.service';
 import { SnotifyModule, SnotifyService, ToastDefaults } from 'ng-snotify';
-
+import { SharedModule } from './shared.module';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    NavbarComponent,
     LoginComponent,
     SignupComponent,
     // ProfileComponent,
@@ -36,6 +34,7 @@ import { SnotifyModule, SnotifyService, ToastDefaults } from 'ng-snotify';
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
+    SharedModule,
     FormsModule,
     HttpClientModule,
     SnotifyModule

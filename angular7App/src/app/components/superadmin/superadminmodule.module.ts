@@ -11,7 +11,7 @@ import { FormsModule } from '@angular/forms';
 import { FlatpickrModule } from 'angularx-flatpickr';
 import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 import { EventsComponent } from './events/events.component';
-
+import { SharedModule } from '../../shared.module';
 
 const routes: Routes = [
   {
@@ -34,6 +34,7 @@ const routes: Routes = [
     CommonModule,
     FormsModule,
     NgbModalModule,
+    SharedModule,
     FlatpickrModule.forRoot(),
     CalendarModule.forRoot({
       provide: DateAdapter,

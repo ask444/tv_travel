@@ -9,6 +9,7 @@ h3 {
 
   .sidebar-nav {
     background: #212529;
+    height: 100%;
 }
 .sidebar-nav ul {
     padding: 0;
