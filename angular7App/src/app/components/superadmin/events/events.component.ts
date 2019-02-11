@@ -1,10 +1,11 @@
-import {  OnInit } from '@angular/core';
+import { OnInit } from '@angular/core';
 import {
   Component,
   ChangeDetectionStrategy,
   ViewChild,
   TemplateRef
 } from '@angular/core';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import {
   startOfDay,
   endOfDay,
@@ -23,7 +24,7 @@ import {
   CalendarEventTimesChangedEvent,
   CalendarView
 } from 'angular-calendar';
-
+import { AddeditEventComponent } from '../../../addedit-event/addedit-event.component';
 const colors: any = {
   red: {
     primary: '#ad2121',
@@ -120,7 +121,7 @@ export class EventsComponent {
 
   activeDayIsOpen: boolean = true;
 
-  constructor(private modal: NgbModal) {}
+  constructor(private modal: NgbModal, public dialog: MatDialog) { }
 
   dayClicked({ date, events }: { date: Date; events: CalendarEvent[] }): void {
     if (isSameMonth(date, this.viewDate)) {
@@ -152,19 +153,34 @@ export class EventsComponent {
     this.modal.open(this.modalContent, { size: 'lg' });
   }
 
-  addEvent(): void {
-    this.events.push({
-      title: 'New event',
-      start: startOfDay(new Date()),
-      end: endOfDay(new Date()),
-      color: colors.red,
-      draggable: true,
-      resizable: {
-        beforeStart: true,
-        afterEnd: true
-      }
+  // addEvent(): void {
+  //   this.events.push({
+  //     title: 'New event',
+  //     start: startOfDay(new Date()),
+  //     end: endOfDay(new Date()),
+  //     color: colors.red,
+  //     draggable: true,
+  //     resizable: {
+  //       beforeStart: true,
+  //       afterEnd: true
+  //     }
+  //   });
+  //   this.refresh.next();
+  // }
+
+
+  addEvent() {
+    const dialogRef = this.dialog.open(AddeditEventComponent, {
+      width: '450px',
+      height: '500px'
+      // data: { name: this.name, animal: this.animal }
     });
-    this.refresh.next();
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      // this.animal = result;
+    });
+
   }
 }
 

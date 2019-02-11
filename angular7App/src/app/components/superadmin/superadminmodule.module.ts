@@ -12,7 +12,7 @@ import { FlatpickrModule } from 'angularx-flatpickr';
 import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 import { EventsComponent } from './events/events.component';
 import { SharedModule } from '../../shared.module';
-
+import { MaterialModule } from '../../material.module';
 const routes: Routes = [
   {
     path: 'profile', component: SuperhomeComponent,
@@ -34,6 +34,7 @@ const routes: Routes = [
     CommonModule,
     FormsModule,
     NgbModalModule,
+    MaterialModule,
     SharedModule,
     FlatpickrModule.forRoot(),
     CalendarModule.forRoot({
