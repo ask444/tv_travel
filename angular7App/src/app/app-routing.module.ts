@@ -53,6 +53,10 @@ const appRoutes: Routes = [
     path: 'user',
     loadChildren: () => UserModule,
     canActivate: [AfterLoginService]
+  },
+  {
+    path:"**",
+    redirectTo:"login"
   }
 ];
 

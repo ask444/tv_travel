@@ -18,7 +18,6 @@ import { AfterLoginService } from './services/after-login.service';
 import { BeforeLoginService } from './services/before-login.service';
 import { SnotifyModule, SnotifyService, ToastDefaults } from 'ng-snotify';
 import { SharedModule } from './shared.module';
-import { AddeditEventComponent } from './addedit-event/addedit-event.component';
 import { MaterialModule } from './material.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
@@ -31,20 +30,19 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     // ProfileComponent,
     RequestResetComponent,
     ResponseResetComponent,
-    AddeditEventComponent
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     BrowserAnimationsModule,
     AppRoutingModule,
     SharedModule,
     ReactiveFormsModule,
-    FormsModule,
     HttpClientModule,
     MaterialModule,
     SnotifyModule
   ],
-  entryComponents: [AddeditEventComponent],
+  entryComponents: [],
   providers: [JarwisService, TokenService, AuthService, AfterLoginService, BeforeLoginService,
     { provide: 'SnotifyToastConfig', useValue: ToastDefaults },
     SnotifyService],

@@ -1,4 +1,5 @@
 import { OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import {
   Component,
   ChangeDetectionStrategy,
@@ -121,7 +122,7 @@ export class EventsComponent {
 
   activeDayIsOpen: boolean = true;
 
-  constructor(private modal: NgbModal, public dialog: MatDialog) { }
+  constructor(private modal: NgbModal, public dialog: MatDialog, public router: Router) { }
 
   dayClicked({ date, events }: { date: Date; events: CalendarEvent[] }): void {
     if (isSameMonth(date, this.viewDate)) {
@@ -170,16 +171,19 @@ export class EventsComponent {
 
 
   addEvent() {
-    const dialogRef = this.dialog.open(AddeditEventComponent, {
-      width: '450px',
-      height: '500px'
-      // data: { name: this.name, animal: this.animal }
-    });
+    // this.router.navigateByUrl('superadmin/createevents');
+    debugger;
+    this.router.navigate(['superadmin/profile/createevents']);
+    // const dialogRef = this.dialog.open(AddeditEventComponent, {
+    //   width: '700px',
+    //   height: '500px'
+    //   // data: { name: this.name, animal: this.animal }
+    // });
 
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-      // this.animal = result;
-    });
+    // dialogRef.afterClosed().subscribe(result => {
+    //   console.log('The dialog was closed');
+    //   // this.animal = result;
+    // });
 
   }
 }

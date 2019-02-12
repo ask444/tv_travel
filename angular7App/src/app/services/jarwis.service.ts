@@ -23,4 +23,8 @@ export class JarwisService {
     return this.http.post(`${this.baseUrl}/resetPassword`, data)
   }
 
+  createEvent(data) {
+    return this.http.post(`${this.baseUrl}/createEvent`, data)
+  }
+
 }

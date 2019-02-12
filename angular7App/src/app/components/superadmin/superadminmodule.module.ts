@@ -13,12 +13,15 @@ import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 import { EventsComponent } from './events/events.component';
 import { SharedModule } from '../../shared.module';
 import { MaterialModule } from '../../material.module';
+import { AddeditEventComponent } from '../../addedit-event/addedit-event.component';
 const routes: Routes = [
   {
     path: 'profile', component: SuperhomeComponent,
     children: [
-      { path: "", redirectTo: "events", pathMatch: "full" },
+      { path: "", component:EventsComponent },
       { path: "events", component: EventsComponent },
+      { path: "createevents", component: AddeditEventComponent },
+      { path: "**",redirectTo: 'profile'    },
       // { path: "albums", component: ArtistAlbumListComponent },
       // { path: "videos", component: ArtistMusicVideoListComponent }
     ]

@@ -1,6 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder }
   from '@angular/forms';
+import {
+  startOfDay,
+  endOfDay,
+  subDays,
+  addDays,
+  endOfMonth,
+  isSameDay,
+  isSameMonth,
+  addHours
+} from 'date-fns';
+import { JarwisService } from '../../../src/app/services/jarwis.service';
 
 @Component({
   selector: 'app-addedit-event',
@@ -15,27 +26,32 @@ export class AddeditEventComponent implements OnInit {
     'German',
   ]
 
-  firstName = new FormControl("", Validators.required);
-  lastName = new FormControl("", Validators.required);
-  email = new FormControl("", [
-    Validators.required,
-    Validators.pattern("[^ @]*@[^ @]*")
-  ]);
-  password = new FormControl("", [
-    Validators.required,
-    Validators.minLength(8)
-  ]);
+  title = new FormControl("", Validators.required);
+  // email = new FormControl("", [
+  //   Validators.required,
+  //   Validators.pattern("[^ @]*@[^ @]*")
+  // ]);
+
   language = new FormControl("", Validators.required);
+  primarycolor: any;
+  startdate: any;
+  enddate: any;
 
 
-  constructor(fb: FormBuilder) {
+  constructor(fb: FormBuilder, private Jarwis: JarwisService) {
 
+    this.startdate = startOfDay(new Date());
+    this.enddate = startOfDay(new Date());
     this.myform = fb.group({
-      "firstName": this.firstName,
-      "lastName": this.lastName,
-      "email": this.email,
-      "password": this.password,
-      "language": this.language
+      "title": this.title,
+      "primarycolor": this.primarycolor,
+      "startdate": this.startdate,
+      "enddate": this.enddate,
+      "draggable": true,
+      "resizable": {
+        beforeStart: true,
+        afterEnd: true
+      }
     });
 
 
@@ -43,5 +59,18 @@ export class AddeditEventComponent implements OnInit {
 
   ngOnInit() {
   }
+
+  onSubmit() {
+    if (this.myform.valid) {
+      console.log("Form Submitted!");
+      console.log(this.myform.value);
+      this.Jarwis.createEvent(JSON.stringify(this.myform.value)).subscribe(
+        data => (data),
+        error => console.log(error)
+      );
+      this.myform.reset();
+    }
+  }
+
 
 }
