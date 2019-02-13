@@ -24,7 +24,7 @@ export class JarwisService {
   }
 
   createEvent(data) {
-    return this.http.post(`${this.baseUrl}/createEvent`, data)
+    return this.http.post(`${this.baseUrl}/createEvent`, data,{responseType: 'text' as 'json'})
   }
 
 }

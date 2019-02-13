@@ -61,7 +61,12 @@ export class AddeditEventComponent implements OnInit {
     if (this.myform.valid) {
       console.log("Form Submitted!");
       console.log(this.myform.value);
-      this.Jarwis.createEvent(JSON.stringify(this.myform.value)).subscribe(
+      this.Jarwis.createEvent(JSON.stringify(this.myform.value))
+        // .toPromise()
+        // .then(res => console.log('Data:', res))
+        // .catch();
+
+      .subscribe(
         data => console.log('Data:', data),
         err => console.log(err),
         () => console.log('complete')
