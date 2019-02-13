@@ -21,7 +21,7 @@ const routes: Routes = [
       { path: "", component:EventsComponent },
       { path: "events", component: EventsComponent },
       { path: "createevents", component: AddeditEventComponent },
-      { path: "**",redirectTo: 'profile'    },
+      // { path: "**",redirectTo: 'profile'    },
       // { path: "albums", component: ArtistAlbumListComponent },
       // { path: "videos", component: ArtistMusicVideoListComponent }
     ]

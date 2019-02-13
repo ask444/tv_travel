@@ -48,10 +48,7 @@ export class AddeditEventComponent implements OnInit {
       "startdate": this.startdate,
       "enddate": this.enddate,
       "draggable": true,
-      "resizable": {
-        beforeStart: true,
-        afterEnd: true
-      }
+      "resizable": true
     });
 
 
@@ -65,10 +62,11 @@ export class AddeditEventComponent implements OnInit {
       console.log("Form Submitted!");
       console.log(this.myform.value);
       this.Jarwis.createEvent(JSON.stringify(this.myform.value)).subscribe(
-        data => (data),
-        error => console.log(error)
+        data => console.log('Data:', data),
+        err => console.log(err),
+        () => console.log('complete')
       );
-      this.myform.reset();
+      // this.myform.reset();
     }
   }
 
