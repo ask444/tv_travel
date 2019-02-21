@@ -39,13 +39,13 @@ export class LoginComponent implements OnInit {
     this.Auth.changeAuthStatus(true);
     // this.router.navigate[('/superadmin/profile')];
     if(data.role=="USER"){
-      this.router.navigate(['/user/profile']);
+      this.router.navigate(['/user']);
     }
     else if(data.role=="ADMIN"){
-      this.router.navigate(['/admin/profile']);
+      this.router.navigate(['/admin']);
     }
     else if(data.role=="SUPERADMIN"){
-      this.router.navigate(['/superadmin/profile']);
+      this.router.navigate(['/superadmin']);
     }
 
   }

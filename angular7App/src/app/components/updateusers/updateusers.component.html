@@ -1,0 +1,24 @@
+<p>
+  updateusers works!
+</p>
+<div class="example-container">
+
+  <form [formGroup]="myForm" (ngSubmit)="onSubmit(myForm.value)">
+    <mat-form-field class="col-md-12">
+      <input matInput formControlName="name" placeholder="Your name">
+    </mat-form-field>
+
+    <mat-form-field class="col-md-12">
+      <input matInput formControlName="email" placeholder="Your email">
+    </mat-form-field>
+
+    <mat-form-field class="col-md-12">
+      <mat-select class="form-control" formControlName="role">
+        <mat-option value="">Please select a role</mat-option>
+        <mat-option *ngFor="let role of roles" [value]="role.value">{{role.view}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <button type="submit" mat-raised-button color="primary" [disabled]="!myForm.valid">Update</button>
+  </form>
+</div>

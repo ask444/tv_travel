@@ -1,0 +1,29 @@
+<p>
+  users-list works!
+</p>
+<table width="100%">
+  <tr>
+    <th>Id</th>
+    <th>Email</th>
+    <th>Role</th>
+    <th>Actions</th>
+    <th>Created At</th>
+    <th>Updated At</th>
+  </tr>
+  <tr *ngFor="let datas of httpData">
+    <td>{{datas.id}}</td>
+    <td>{{datas.email}}</td>
+    <td>{{datas.name}}</td>
+    <td>
+      <i (click)="editUser(datas)" class="fa fa-pencil icons-mar" aria-hidden="true"></i>
+      <i (click)="deleteUser(datas)" class="fa fa-trash icons-mar" aria-hidden="true"></i>
+    </td>
+    <td>{{datas.created_at}}</td>
+    <td>{{datas.updated_at}}</td>
+  </tr>
+</table>
+<!-- <ul>
+  <li *ngFor="let hero of heroes.key1">
+    {{ hero.key11 }}
+  </li>
+</ul> -->

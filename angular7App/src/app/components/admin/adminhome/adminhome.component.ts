@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-adminhome',
+  // selector: 'mwl-demo-component',
   templateUrl: './adminhome.component.html',
   styleUrls: ['./adminhome.component.css']
 })

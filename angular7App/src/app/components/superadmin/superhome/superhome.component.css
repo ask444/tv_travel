@@ -9,7 +9,8 @@ h3 {
 
   .sidebar-nav {
     background: #212529;
-    height: 100%;
+    height: 200vh;
+    /* height: 100%; */
 }
 .sidebar-nav ul {
     padding: 0;
@@ -77,4 +78,8 @@ h3 {
     color: #f8f9fa;
     text-decoration: none;
     background: #0b7285;
+}
+
+.header-st{
+  background: #212529;
 }

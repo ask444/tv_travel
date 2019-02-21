@@ -24,7 +24,7 @@ declare var $: any;
 
 
 @Component({
-  selector: 'mwl-demo-component',
+  selector: 'super-home-component',
   styleUrls: ['superhome.component.css'],
   templateUrl: 'superhome.component.html'
 })

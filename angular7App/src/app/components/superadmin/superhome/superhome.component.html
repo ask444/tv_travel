@@ -1,4 +1,4 @@
-<div class="row">
+<div class="row header-st">
   <app-navbar></app-navbar>
 </div>
 <div class="row">
@@ -12,12 +12,12 @@
           </a>
           <ul>
             <li>
-              <a href="https://github.com/onokumus/metisMenu">
+              <a [routerLink]="[ '/superadmin/userslist' ]">
                 <span class="fa fa-fw fa-users"></span> users
               </a>
             </li>
             <li>
-              <a href="https://github.com/onokumus/metisMenu">
+              <a [routerLink]="[ '/superadmin/events' ]">
                 <span class="fa fa-fw fa-calendar"></span> calendar
               </a>
             </li>
@@ -32,10 +32,7 @@
     </nav>
   </aside>
   <div class="col-md-9">
-
-    <button mat-button>Click me!</button>
-
-
+    <!-- <button mat-button>Click me!</button> -->
     <router-outlet></router-outlet>
   </div>
 </div>

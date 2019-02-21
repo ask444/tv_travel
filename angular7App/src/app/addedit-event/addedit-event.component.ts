@@ -55,6 +55,14 @@ export class AddeditEventComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.Jarwis.geteventsList().subscribe(
+      (data) => {
+        debugger;
+        console.log("my data:",data);
+      //  this.data = data;
+      }
+
+     );
   }
 
   onSubmit() {

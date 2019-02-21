@@ -20,6 +20,10 @@ import { SnotifyModule, SnotifyService, ToastDefaults } from 'ng-snotify';
 import { SharedModule } from './shared.module';
 import { MaterialModule } from './material.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { RouterModule, Routes } from '@angular/router';
+import { HttpModule } from '@angular/http';
+import { UpdateusersComponent } from './components/updateusers/updateusers.component';
+
 
 
 @NgModule({
@@ -30,6 +34,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     // ProfileComponent,
     RequestResetComponent,
     ResponseResetComponent,
+    UpdateusersComponent,
   ],
   imports: [
     BrowserModule,
@@ -37,12 +42,14 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     BrowserAnimationsModule,
     AppRoutingModule,
     SharedModule,
+    RouterModule,
+    HttpModule,
     ReactiveFormsModule,
     HttpClientModule,
     MaterialModule,
     SnotifyModule
   ],
-  entryComponents: [],
+  entryComponents: [UpdateusersComponent],
   providers: [JarwisService, TokenService, AuthService, AfterLoginService, BeforeLoginService,
     { provide: 'SnotifyToastConfig', useValue: ToastDefaults },
     SnotifyService],

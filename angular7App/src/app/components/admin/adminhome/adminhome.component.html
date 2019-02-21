@@ -1,3 +1,38 @@
-<p>
-  adminhome works!
-</p>
+<div class="row">
+  <app-navbar></app-navbar>
+</div>
+<div class="row">
+  <aside class="col-md-3">
+    <nav class="sidebar-nav">
+      <ul class="metismenu" id="menu1">
+        <li>
+          <a class="has-arrow" href="#">
+            <span class="fa fa-fw fa-globe fa-lg"></span>
+            Travel (admin)
+          </a>
+          <ul>
+            <!-- <li>
+              <a [routerLink]="[ '/superadmin/userslist' ]">
+                <span class="fa fa-fw fa-users"></span> users
+              </a>
+            </li> -->
+            <li>
+              <a [routerLink]="[ '/admin/events' ]">
+                <span class="fa fa-fw fa-calendar"></span> calendar
+              </a>
+            </li>
+            <li>
+              <a href="https://github.com/onokumus/metisMenu/issues">
+                <span class="fa fa-fw fa-exclamation-triangle"></span> Issues
+              </a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
+  </aside>
+  <div class="col-md-9">
+    <!-- <button mat-button>Click me!</button> -->
+    <router-outlet></router-outlet>
+  </div>
+</div>

@@ -14,13 +14,16 @@ import { EventsComponent } from './events/events.component';
 import { SharedModule } from '../../shared.module';
 import { MaterialModule } from '../../material.module';
 import { AddeditEventComponent } from '../../addedit-event/addedit-event.component';
+import { UsersListComponent } from './users-list/users-list.component';
 const routes: Routes = [
   {
-    path: 'profile', component: SuperhomeComponent,
+    path: '', component: SuperhomeComponent,
     children: [
-      { path: "", component:EventsComponent },
+      { path: "", component: EventsComponent },
       { path: "events", component: EventsComponent },
       { path: "createevents", component: AddeditEventComponent },
+      { path: "userslist", component: UsersListComponent },
+      // { path: '**', redirectTo: "/login" }
       // { path: "**",redirectTo: 'profile'    },
       // { path: "albums", component: ArtistAlbumListComponent },
       // { path: "videos", component: ArtistMusicVideoListComponent }
@@ -47,6 +50,6 @@ const routes: Routes = [
     ,
     RouterModule.forChild(routes)
   ],
-  declarations: [ProfileComponent, SuperhomeComponent, EventsComponent]
+  declarations: [ProfileComponent, SuperhomeComponent, EventsComponent, UsersListComponent]
 })
 export class SuperadminmoduleModule { }

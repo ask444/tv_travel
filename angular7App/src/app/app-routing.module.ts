@@ -15,8 +15,7 @@ const appRoutes: Routes = [
   { path: '', component: LoginComponent, pathMatch: 'full' },
   {
     path: 'login',
-    component: LoginComponent,
-    canActivate: [BeforeLoginService]
+    component: LoginComponent
   },
   {
     path: 'signup',

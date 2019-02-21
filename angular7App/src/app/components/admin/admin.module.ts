@@ -2,19 +2,29 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
 import { AdminhomeComponent } from './adminhome/adminhome.component';
-
-
+import { EventsComponent } from '../superadmin/events/events.component';
+import { SharedModule } from '../../shared.module';
 const routes: Routes = [
-  { path: 'profile', component: AdminhomeComponent },
-  // { path: 'component2', component: Component2Component },
-  // { path: 'component3', component: Component3Component },
+  {
+    path: '', component: AdminhomeComponent,
+    // children: [
+    //   { path: "", component: EventsComponent },
+    //   { path: 'events', component: EventsComponent }
+    // ]
+    // { path: 'events', component: EventsComponent },
+    // { path: '**', redirectTo: "/login" }
+    // { path: 'component2', component: Component2Component },
+    // { path: 'component3', component: Component3Component },
+  },
 ];
 
 @NgModule({
   imports: [
     CommonModule,
+    SharedModule,
     RouterModule.forChild(routes)
   ],
+  exports: [RouterModule],
   declarations: [AdminhomeComponent]
 })
 export class AdminModule { }
