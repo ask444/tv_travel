@@ -20,38 +20,31 @@ const appRoutes: Routes = [
   {
     path: 'signup',
     component: SignupComponent,
-    canActivate: [BeforeLoginService]
   },
   {
     path: 'profile',
     component: ProfileComponent,
-    canActivate: [AfterLoginService]
   },
   {
     path: 'request-password-reset',
     component: RequestResetComponent,
-    canActivate: [BeforeLoginService]
   },
   {
     path: 'response-password-reset',
     component: ResponseResetComponent,
-    canActivate: [BeforeLoginService]
   },
   {
     path: 'superadmin',
     loadChildren: () => SuperadminmoduleModule,
-    canActivate: [AfterLoginService]
   }
   ,
   {
     path: 'admin',
     loadChildren: () => AdminModule,
-    canActivate: [AfterLoginService]
   },
   {
     path: 'user',
     loadChildren: () => UserModule,
-    canActivate: [AfterLoginService]
   },
   {
     path:"**",

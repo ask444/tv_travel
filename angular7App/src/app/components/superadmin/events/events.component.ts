@@ -44,7 +44,7 @@ const colors: any = {
   }
 };
 @Component({
-  // selector: 'mwl-demo-component',
+  selector: 'Events',
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './events.component.html',
   styleUrls: ['./events.component.css']
@@ -126,97 +126,105 @@ export class EventsComponent {
   activeDayIsOpen: boolean = true;
   httpData: any;
 
-  constructor(private modal: NgbModal, private http: HttpClient, private Jarwis: JarwisService, public dialog: MatDialog, public router: Router) { 
+  constructor(private modal: NgbModal, private http: HttpClient, private Jarwis: JarwisService, public dialog: MatDialog, public router: Router) {
 
-    this.getData();
+
+    this.Jarwis.geteventsList().subscribe((data: any) => {
+      // this.httpData = data.data;
+
+    //  events: CalendarEvent[] =[]
+
+    })
+
+
   }
 
 
 
 
-dayClicked({ date, events }: { date: Date; events: CalendarEvent[] }): void {
-  if(isSameMonth(date, this.viewDate)) {
-  this.viewDate = date;
-  if (
-    (isSameDay(this.viewDate, date) && this.activeDayIsOpen === true) ||
-    events.length === 0
-  ) {
-    this.activeDayIsOpen = false;
-  } else {
-    this.activeDayIsOpen = true;
+  dayClicked({ date, events }: { date: Date; events: CalendarEvent[] }): void {
+    if (isSameMonth(date, this.viewDate)) {
+      this.viewDate = date;
+      if (
+        (isSameDay(this.viewDate, date) && this.activeDayIsOpen === true) ||
+        events.length === 0
+      ) {
+        this.activeDayIsOpen = false;
+      } else {
+        this.activeDayIsOpen = true;
+      }
+    }
   }
-}
+
+  eventTimesChanged({
+    event,
+    newStart,
+    newEnd
+  }: CalendarEventTimesChangedEvent): void {
+    event.start = newStart;
+    event.end = newEnd;
+    this.handleEvent('Dropped or resized', event);
+    this.refresh.next();
   }
 
-eventTimesChanged({
-  event,
-  newStart,
-  newEnd
-}: CalendarEventTimesChangedEvent): void {
-  event.start = newStart;
-  event.end = newEnd;
-  this.handleEvent('Dropped or resized', event);
-  this.refresh.next();
-}
+  handleEvent(action: string, event: CalendarEvent): void {
+    this.modalData = { event, action };
+    this.modal.open(this.modalContent, { size: 'lg' });
+  }
 
-handleEvent(action: string, event: CalendarEvent): void {
-  this.modalData = { event, action };
-  this.modal.open(this.modalContent, { size: 'lg' });
-}
-
-// addEvent(): void {
-//   this.events.push({
-//     title: 'New event',
-//     start: startOfDay(new Date()),
-//     end: endOfDay(new Date()),
-//     color: colors.red,
-//     draggable: true,
-//     resizable: {
-//       beforeStart: true,
-//       afterEnd: true
-//     }
-//   });
-//   this.refresh.next();
-// }
+  // addEvent(): void {
+  //   this.events.push({
+  //     title: 'New event',
+  //     start: startOfDay(new Date()),
+  //     end: endOfDay(new Date()),
+  //     color: colors.red,
+  //     draggable: true,
+  //     resizable: {
+  //       beforeStart: true,
+  //       afterEnd: true
+  //     }
+  //   });
+  //   this.refresh.next();
+  // }
 
 
-addEvent() {
-  // this.router.navigateByUrl('superadmin/createevents');
-  debugger;
-  this.router.navigate(['superadmin/profile/createevents']);
-  // const dialogRef = this.dialog.open(AddeditEventComponent, {
-  //   width: '700px',
-  //   height: '500px'
-  //   // data: { name: this.name, animal: this.animal }
-  // });
+  addEvent() {
+    // this.router.navigateByUrl('superadmin/createevents');
+    debugger;
+    this.router.navigate(['superadmin/profile/createevents']);
+    // const dialogRef = this.dialog.open(AddeditEventComponent, {
+    //   width: '700px',
+    //   height: '500px'
+    //   // data: { name: this.name, animal: this.animal }
+    // });
 
-  // dialogRef.afterClosed().subscribe(result => {
-  //   console.log('The dialog was closed');
-  //   // this.animal = result;
-  // });
+    // dialogRef.afterClosed().subscribe(result => {
+    //   console.log('The dialog was closed');
+    //   // this.animal = result;
+    // });
 
-}
+  }
 
-getData(){
-  this.http.get('https://api.openweathermap.org/data/2.5/forecast?id=3362024&APPID=bbcf57969e78d1300a815765b7d587f0')
-    .pipe(map(r => r)).subscribe((data: any) => {
-      const items = data;
-      this.httpData = data.list;
-      // data.list;
-      console.log("TST :", this.httpData, typeof this.httpData);
+  getData() {
+    this.http.get('https://api.openweathermap.org/data/2.5/forecast?id=3362024&APPID=bbcf57969e78d1300a815765b7d587f0')
+      .pipe(map(r => r)).subscribe((data: any) => {
+        const items = data;
+        this.httpData = data.list;
+        // data.list;
+        console.log("TST :", this.httpData, typeof this.httpData);
 
-    });
+      });
 
-  this.http.get('https://api.openweathermap.org/data/2.5/forecast?id=3362024&APPID=bbcf57969e78d1300a815765b7d587f0')
-    .toPromise()
-    .then((data: any) => {
-      debugger;
-      /* tslint:disable:no-console */
-      console.log(data);
-      // this.httpData = data.list;
-    });
+    this.http.get('https://api.openweathermap.org/data/2.5/forecast?id=3362024&APPID=bbcf57969e78d1300a815765b7d587f0')
+      .toPromise()
+      .then((data: any) => {
+        debugger;
+        /* tslint:disable:no-console */
+        console.log(data);
+        // this.httpData = data.list;
+      });
 
-}
+  }
 
 
 }

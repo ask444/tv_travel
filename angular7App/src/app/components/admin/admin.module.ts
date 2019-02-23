@@ -4,13 +4,14 @@ import { Routes, RouterModule } from '@angular/router';
 import { AdminhomeComponent } from './adminhome/adminhome.component';
 import { EventsComponent } from '../superadmin/events/events.component';
 import { SharedModule } from '../../shared.module';
+import { AdminusersComponent } from './adminusers/adminusers.component';
 const routes: Routes = [
   {
     path: '', component: AdminhomeComponent,
-    // children: [
-    //   { path: "", component: EventsComponent },
-    //   { path: 'events', component: EventsComponent }
-    // ]
+    children: [
+      { path: "", component: AdminusersComponent },
+      { path: 'adminusers', component: AdminusersComponent }
+    ]
     // { path: 'events', component: EventsComponent },
     // { path: '**', redirectTo: "/login" }
     // { path: 'component2', component: Component2Component },
@@ -25,6 +26,6 @@ const routes: Routes = [
     RouterModule.forChild(routes)
   ],
   exports: [RouterModule],
-  declarations: [AdminhomeComponent]
+  declarations: [AdminhomeComponent, AdminusersComponent]
 })
 export class AdminModule { }

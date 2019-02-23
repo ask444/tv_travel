@@ -37,12 +37,23 @@ export class JarwisService {
       .pipe(map((response) => response));
   }
   getusersList() {
-    return this.http.get(`${this.baseUrl}/getsusers`)
+    return this.http.get(`${this.baseUrl}/getusers`)
       .pipe(map((response) => response));
   }
 
   updateUser(data) {
-    return this.http.post(`${this.baseUrl}/updateuser`, data)
+    return this.http.post(`${this.baseUrl}/updateuser`, data).pipe(map((response) => response));
+  }
+
+  getadminusersList() {
+    return this.http.get(`${this.baseUrl}/getadminusers`)
+      .pipe(map((response) => response));
+
+  }
+  deleteuser(data) {
+    debugger;
+    return this.http.post(`${this.baseUrl}/deleteuser`, data).pipe(map((response) => response));
+
   }
 
 }

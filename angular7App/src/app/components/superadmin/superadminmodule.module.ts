@@ -50,6 +50,7 @@ const routes: Routes = [
     ,
     RouterModule.forChild(routes)
   ],
-  declarations: [ProfileComponent, SuperhomeComponent, EventsComponent, UsersListComponent]
+  declarations: [ProfileComponent, SuperhomeComponent,
+     EventsComponent, UsersListComponent]
 })
 export class SuperadminmoduleModule { }
