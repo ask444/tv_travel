@@ -4,7 +4,8 @@ import {
   Component,
   ChangeDetectionStrategy,
   ViewChild,
-  TemplateRef
+  TemplateRef,
+  Input
 } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import {
@@ -17,7 +18,7 @@ import {
   isSameMonth,
   addHours
 } from 'date-fns';
-import { Subject } from 'rxjs';
+import { Subject,Observable } from 'rxjs';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import {
   CalendarEvent,
@@ -82,57 +83,49 @@ export class EventsComponent {
 
   refresh: Subject<any> = new Subject();
 
-  events: CalendarEvent[] = [
-    {
-      start: subDays(startOfDay(new Date()), 1),
-      end: addDays(new Date(), 1),
-      title: 'A 3 day event',
-      color: colors.red,
-      actions: this.actions,
-      allDay: true,
-      resizable: {
-        beforeStart: true,
-        afterEnd: true
-      },
-      draggable: true
-    },
-    {
-      start: startOfDay(new Date()),
-      title: 'An event with no end date',
-      color: colors.yellow,
-      actions: this.actions
-    },
-    {
-      start: subDays(endOfMonth(new Date()), 3),
-      end: addDays(endOfMonth(new Date()), 3),
-      title: 'A long event that spans 2 months',
-      color: colors.blue,
-      allDay: true
-    },
-    {
-      start: addHours(startOfDay(new Date()), 2),
-      end: new Date(),
-      title: 'A draggable and resizable event',
-      color: colors.yellow,
-      actions: this.actions,
-      resizable: {
-        beforeStart: true,
-        afterEnd: true
-      },
-      draggable: true
-    }
-  ];
+  // events: CalendarEvent[] = [];
+  @Input() events: CalendarEvent[] = [];
+
+  events$: Observable<Array<CalendarEvent<any>>>;
 
   activeDayIsOpen: boolean = true;
   httpData: any;
-
+  eventSources = [];
+  
   constructor(private modal: NgbModal, private http: HttpClient, private Jarwis: JarwisService, public dialog: MatDialog, public router: Router) {
-
-
+    // this.events = [
+    //   {
+    //     start: subDays(startOfDay(new Date()), 1),
+    //     end: addDays(new Date(), 1),
+    //     title: 'A 3 day event',
+    //     color: colors.red,
+    //     actions: this.actions,
+    //     allDay: true,
+    //     resizable: {
+    //       beforeStart: true,
+    //       afterEnd: true
+    //     },
+    //     draggable: true
+    //   }]
     this.Jarwis.geteventsList().subscribe((data: any) => {
       // this.httpData = data.data;
+      debugger;
+      this.events = [
+        {
+          start: subDays(startOfDay(new Date()), 1),
+          end: addDays(new Date(), 1),
+          title: 'A 3 day event',
+          color: colors.red,
+          actions: this.actions,
+          allDay: true,
+          resizable: {
+            beforeStart: true,
+            afterEnd: true
+          },
+          draggable: true
+        }]
 
-    //  events: CalendarEvent[] =[]
+      this.eventSources.push(this.events);
 
     })
 
@@ -191,7 +184,7 @@ export class EventsComponent {
   addEvent() {
     // this.router.navigateByUrl('superadmin/createevents');
     debugger;
-    this.router.navigate(['superadmin/profile/createevents']);
+    this.router.navigate(['superadmin/createevents']);
     // const dialogRef = this.dialog.open(AddeditEventComponent, {
     //   width: '700px',
     //   height: '500px'

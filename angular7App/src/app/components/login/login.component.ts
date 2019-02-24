@@ -34,7 +34,6 @@ export class LoginComponent implements OnInit {
   }
 
   handleResponse(data) {
-    debugger;
     this.Token.handle(data.access_token);
     this.Auth.changeAuthStatus(true);
     // this.router.navigate[('/superadmin/profile')];

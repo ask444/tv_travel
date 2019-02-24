@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder }
   from '@angular/forms';
+import { MatSnackBar, MatDialog } from '@angular/material';
 import {
   startOfDay,
   endOfDay,
@@ -12,7 +13,7 @@ import {
   addHours
 } from 'date-fns';
 import { JarwisService } from '../../../src/app/services/jarwis.service';
-
+import { UpdateeventComponent } from '../components/updateevent/updateevent.component';
 @Component({
   selector: 'app-addedit-event',
   templateUrl: './addedit-event.component.html',
@@ -36,9 +37,10 @@ export class AddeditEventComponent implements OnInit {
   primarycolor: any;
   startdate: any;
   enddate: any;
+  responseData: any;
 
 
-  constructor(fb: FormBuilder, private Jarwis: JarwisService) {
+  constructor(fb: FormBuilder, public dialog: MatDialog, private Jarwis: JarwisService, private snackBar: MatSnackBar) {
 
     this.startdate = startOfDay(new Date());
     this.enddate = startOfDay(new Date());
@@ -55,32 +57,69 @@ export class AddeditEventComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.Jarwis.geteventsList().subscribe(
-      (data) => {
-        debugger;
-        console.log("my data:",data);
-      //  this.data = data;
-      }
-
-     );
+    this.geteventslist();
   }
-
+  geteventslist() {
+    this.Jarwis.geteventsList().subscribe(
+      (data: any) => {
+        console.log("my data:", data);
+        this.responseData = data.data;
+      }
+    );
+  }
   onSubmit() {
     if (this.myform.valid) {
       console.log("Form Submitted!");
       console.log(this.myform.value);
       this.Jarwis.createEvent(JSON.stringify(this.myform.value))
-        // .toPromise()
-        // .then(res => console.log('Data:', res))
-        // .catch();
-
-      .subscribe(
-        data => console.log('Data:', data),
-        err => console.log(err),
-        () => console.log('complete')
-      );
+        .subscribe(
+          data => console.log('Data:', data),
+          err => console.log(err),
+          () => console.log('complete')
+        );
       // this.myform.reset();
     }
+  }
+
+  deleteEvent(ele) {
+    const eventdata = { event_id: ele.id }
+    this.Jarwis.deleteEvent(JSON.stringify(eventdata))
+      .subscribe((data: any) => {
+        console.log('Data:', data);
+        if (data.status == true) {
+          this.snackBar.open("Event deleted successfully.", "Event", {
+            duration: 2000,
+          });
+          this.geteventslist();
+        }
+        else {
+          this.snackBar.open("Failed to delete event.", "Event", {
+            duration: 2000,
+          });
+        }
+      })
+  }
+
+  editEvent(ele) {
+    const dialogRef = this.dialog.open(UpdateeventComponent, {
+      width: '500px',
+      data: ele
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      if (result.status == true) {
+        this.snackBar.open("Event updated successfully.", "Event", {
+          duration: 2000,
+        });
+        this.geteventslist();
+      }
+      else {
+        this.snackBar.open("Failed to update an event.", "Event", {
+          duration: 2000,
+        });
+      }
+    });
   }
 
 

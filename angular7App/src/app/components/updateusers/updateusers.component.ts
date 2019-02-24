@@ -26,7 +26,6 @@ export class UpdateusersComponent implements OnInit {
     public dialogRef: MatDialogRef<UpdateusersComponent>,
     private Jarwis: JarwisService,
     @Inject(MAT_DIALOG_DATA) public data: any) {
-    debugger;
     this.usersData = data;
   }
 
@@ -47,7 +46,6 @@ export class UpdateusersComponent implements OnInit {
       role: formval.role,
     }
     this.Jarwis.updateUser(sendData).subscribe((data: any) => {
-      debugger;
       if (data.status == true) {
         this.dialogRef.close(data);
       }

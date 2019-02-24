@@ -1,0 +1,29 @@
+<p>
+  Update Event
+</p>
+<form [formGroup]="myform" (ngSubmit)="updateEvent(myform.value)" style="overflow:auto;max-height:350px;">
+  <fieldset>
+    <div class="form-group">
+      <label>Title</label>
+      <input type="text" class="form-control" formControlName="title" required>
+    </div>
+  </fieldset>
+  <div class="form-group">
+    <label>Primary Color</label>
+    <input type="color" class="form-control" formControlName="primarycolor" required>
+  </div>
+  <div class="form-group">
+    <label>Start Date</label>
+    <input type="text" class="form-control" formControlName="startdate" mwlFlatpickr [altInput]="true"
+      [convertModelValue]="true" [enableTime]="true" dateFormat="Y-m-dTH:i" altFormat="F j, Y H:i" placeholder="Not set"
+      required>
+  </div>
+  <div class="form-group">
+    <label>End Date</label>
+    <input class="form-control" type="text" mwlFlatpickr formControlName="enddate" [altInput]="true"
+      [convertModelValue]="true" [enableTime]="true" dateFormat="Y-m-dTH:i" altFormat="F j, Y H:i"
+      placeholder="Not set" />
+  </div>
+  <!-- <pre>{{myform.value | json}}</pre> -->
+  <button class="btn btn-primary" type="submit" [disabled]="!myform.valid">Update</button>
+</form>

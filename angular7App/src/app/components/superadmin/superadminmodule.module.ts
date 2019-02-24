@@ -19,14 +19,10 @@ const routes: Routes = [
   {
     path: '', component: SuperhomeComponent,
     children: [
-      { path: "", component: EventsComponent },
+      { path: "", component: AddeditEventComponent },
       { path: "events", component: EventsComponent },
       { path: "createevents", component: AddeditEventComponent },
       { path: "userslist", component: UsersListComponent },
-      // { path: '**', redirectTo: "/login" }
-      // { path: "**",redirectTo: 'profile'    },
-      // { path: "albums", component: ArtistAlbumListComponent },
-      // { path: "videos", component: ArtistMusicVideoListComponent }
     ]
 
   },
@@ -51,6 +47,6 @@ const routes: Routes = [
     RouterModule.forChild(routes)
   ],
   declarations: [ProfileComponent, SuperhomeComponent,
-     EventsComponent, UsersListComponent]
+    EventsComponent, UsersListComponent]
 })
 export class SuperadminmoduleModule { }

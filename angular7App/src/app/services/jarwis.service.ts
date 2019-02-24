@@ -51,9 +51,15 @@ export class JarwisService {
 
   }
   deleteuser(data) {
-    debugger;
     return this.http.post(`${this.baseUrl}/deleteuser`, data).pipe(map((response) => response));
+  }
 
+  deleteEvent(data) {
+    return this.http.post(`${this.baseUrl}/deleteevent`, data).pipe(map((response) => response));
+  }
+
+  updateEvent(data) {
+    return this.http.post(`${this.baseUrl}/updateevent`, data).pipe(map((response) => response));
   }
 
 }

@@ -23,6 +23,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
 import { HttpModule } from '@angular/http';
 import { UpdateusersComponent } from './components/updateusers/updateusers.component';
+import { UpdateeventComponent } from './components/updateevent/updateevent.component';
 
 
 
@@ -35,6 +36,7 @@ import { UpdateusersComponent } from './components/updateusers/updateusers.compo
     RequestResetComponent,
     ResponseResetComponent,
     UpdateusersComponent,
+    UpdateeventComponent,
   ],
   imports: [
     BrowserModule,
@@ -49,7 +51,7 @@ import { UpdateusersComponent } from './components/updateusers/updateusers.compo
     MaterialModule,
     SnotifyModule
   ],
-  entryComponents: [UpdateusersComponent],
+  entryComponents: [UpdateusersComponent, UpdateeventComponent],
   providers: [JarwisService, TokenService, AuthService, AfterLoginService, BeforeLoginService,
     { provide: 'SnotifyToastConfig', useValue: ToastDefaults },
     SnotifyService],

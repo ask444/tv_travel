@@ -5,12 +5,15 @@ import { AdminhomeComponent } from './adminhome/adminhome.component';
 import { EventsComponent } from '../superadmin/events/events.component';
 import { SharedModule } from '../../shared.module';
 import { AdminusersComponent } from './adminusers/adminusers.component';
+import{AddeditEventComponent} from '../../addedit-event/addedit-event.component';
+
 const routes: Routes = [
   {
     path: '', component: AdminhomeComponent,
     children: [
       { path: "", component: AdminusersComponent },
-      { path: 'adminusers', component: AdminusersComponent }
+      { path: 'adminusers', component: AdminusersComponent },
+      { path: 'createevents', component: AddeditEventComponent }
     ]
     // { path: 'events', component: EventsComponent },
     // { path: '**', redirectTo: "/login" }
